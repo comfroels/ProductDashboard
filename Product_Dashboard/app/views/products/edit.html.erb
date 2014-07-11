@@ -1,0 +1,49 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<h1>Edit Product: <%= @product.id %></h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-2">
+			<form role="form" action="/product/<%= @product.id %>" method="post">
+				<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+				<input type="hidden" name="_method" value="put">
+				<div class="form-group">
+					<label for="name">Name:</label>
+					<input type="text" name="product[name]" class="form-control" value="<%= @product.name %>">
+				</div>
+				<div class="form-group">
+					<label for="description">Description:</label>
+					<textarea name="product[description]" cols="30" rows="3" class="form-control"><%= @product.description %></textarea>
+				</div>
+				<div class="form-group">
+					<label for="price">Price:</label>
+					<input type="number" name="product[price]" step="0.01" min="0" class="form-control" value="<%= @product.price %>">
+				</div>
+				<div class="form-group">
+					<label for="category">Category:</label>
+					<select name="product[category_id]" class="form-control">
+						<% @categories.each do |category| %>
+							<% if @product.category_id == category.id %>
+								<option value="<%= category.id %>" selected><%= category.name %></option>
+							<% else %>
+								<option value="<%= category.id %>"><%= category.name %></option>
+							<% end %>
+						<% end %>
+					</select>
+				</div>
+				<button type="submit" class="btn btn-warning btn-block btn-lg">Update Product</button>
+			</form>
+			<br>
+			<a href="/product/<%= @product.id %>" class="btn btn-success">Show</a> | <a href="/products/index" class="btn btn-default">Back</a>
+		</div>
+		<div class="col-md-4">
+			<% @message.each do |message| %>
+				<div class="alert alert-danger">
+					<%= message %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>

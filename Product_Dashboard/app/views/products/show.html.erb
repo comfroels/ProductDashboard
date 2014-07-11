@@ -1,0 +1,17 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<h1>Product: <%= @product.id %></h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<h3>Name: <%= @product.name %></h3>
+			<h3>Description: <%= @product.description %></h3>
+			<h3>Price: <%= @product.price %></h3>
+			<h3>Category: <%= Category.find(@product.category_id).name %></h3>
+			<br>
+			<a href="/product/<%= @product.id %>/edit" class="btn btn-success">Edit</a> | <a href="/products/index" class="btn btn-default">Back</a>
+		</div>
+	</div>
+</div>
